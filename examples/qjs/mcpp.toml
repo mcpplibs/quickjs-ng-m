@@ -10,3 +10,13 @@ main = "src/main.cpp"
 
 [dependencies]
 "mcpplibs.mwrap.quickjs_ng" = { path = "../.." }
+
+# An 8 MB stack on Windows, as upstream links its programs: the default 1 MB
+# is QuickJS's own JS stack limit, so deep recursion would overflow the C
+# stack before the engine's RangeError (CMakeLists.txt, "Set a 8MB default
+# stack size on Windows").
+[target.'cfg(all(os = "windows", env = "msvc"))'.build]
+ldflags = ["-Wl,/STACK:8388608"]
+
+[target.'cfg(all(os = "windows", env = "gnu"))'.build]
+ldflags = ["-Wl,--stack,8388608"]

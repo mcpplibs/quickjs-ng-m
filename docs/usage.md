@@ -40,6 +40,8 @@ Include it before the import. While a macro is defined it expands even inside a 
 
 The struct representation of `JSValue`, the one every 64-bit target uses, is supported. The NaN-boxed representation of 32-bit targets is refused at compile time.
 
+On Windows, a program that runs untrusted or deeply recursive JavaScript needs a thread stack larger than QuickJS's JS stack limit (`JS_DEFAULT_STACK_SIZE`, 1 MB). Otherwise the C stack overflows before the engine throws its `RangeError`. Upstream links its programs with an 8 MB stack; [examples/qjs](../examples/qjs/mcpp.toml) does the same (`-Wl,/STACK:8388608`). Alternatively, lower the limit with `JS_SetMaxStackSize`.
+
 ## Checks
 
 - `mcpp test`: the embedding API through the module (evaluation, C functions, exceptions, JSON, promises and jobs, modules through a loader, classes with finalizers, property tables), the constants, and the header mixed with the import.
