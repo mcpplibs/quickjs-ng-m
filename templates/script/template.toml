@@ -1,0 +1,4 @@
+[template]
+description  = "Embed JavaScript with import mcpplibs.mwrap.quickjs_ng: a C++ function a script calls, a module's result read back"
+default      = true
+post_message = "Run `mcpp run`, or `mcpp run -- <file.js>` for your own script."

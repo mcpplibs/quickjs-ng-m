@@ -1,0 +1,12 @@
+[package]
+name        = "qjs"
+version     = "0.1.0"
+description = "Run a JavaScript file (a script, or an ES module with its imports from files) through import mcpplibs.mwrap.quickjs_ng; the host upstream's own tests run on"
+license     = "Apache-2.0"
+
+[targets.qjs]
+kind = "bin"
+main = "src/main.cpp"
+
+[dependencies]
+"mcpplibs.mwrap.quickjs_ng" = { path = "../.." }

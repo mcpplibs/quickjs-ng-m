@@ -1,0 +1,16 @@
+quickjs-ng-m: C++ module wrapper
+Copyright (c) 2026 mcpp-community contributors
+
+The wrapper contributions are licensed under the Apache License, Version 2.0.
+Upstream code, copied interfaces and dependencies retain their original
+licenses and copyright notices. QuickJS-ng is distributed under the MIT
+license:
+
+  Copyright (c) 2017-2026 Fabrice Bellard
+  Copyright (c) 2017-2024 Charlie Gordon
+  Copyright (c) 2023-2026 Ben Noordhuis
+  Copyright (c) 2023-2026 Saúl Ibarra Corretgé
+
+Its original README and license are retained in upstream/quickjs-ng/. The
+engine itself is built by compat.quickjs-ng from the same release.
+Provenance and checksums are recorded in upstream/documents.json.

@@ -1,0 +1,54 @@
+// {{project.name}} — JavaScript embedded through import mcpplibs.mwrap.quickjs_ng:
+// a C++ function registered for scripts, a script evaluated, its result and
+// its errors read back.
+import std;
+import mcpplibs.mwrap.quickjs_ng;
+
+using namespace mcpplibs::mwrap::quickjs_ng;          // JS_NewCFunction, JS_IsException … (quickjs.h's inline API)
+using namespace mcpplibs::mwrap::quickjs_ng::macros;  // JS_UNDEFINED, JS_EVAL_TYPE_GLOBAL …
+
+constexpr std::string_view sample = R"(
+const words = "modules make C libraries feel native".split(" ");
+words.map(shout).join(" ") + ` (${words.length} words)`;
+)";
+
+// shout(word): the word in capitals — a C++ function scripts call.
+JSValue shout(JSContext* ctx, JSValueConst, int argc, JSValueConst* argv) {
+    if (argc < 1) return JS_ThrowTypeError(ctx, "shout(word)");
+    std::size_t n = 0;
+    const char* s = JS_ToCStringLen(ctx, &n, argv[0]);
+    if (!s) return JS_EXCEPTION;
+    std::string word(s, n);
+    JS_FreeCString(ctx, s);
+    std::ranges::transform(word, word.begin(), [](unsigned char c) { return static_cast<char>(std::toupper(c)); });
+    return JS_NewStringLen(ctx, word.data(), word.size());
+}
+
+int main(int argc, char** argv) {
+    std::string script(sample);
+    if (argc > 1) {
+        std::ifstream in(argv[1], std::ios::binary);
+        if (!in) {
+            std::println(std::cerr, "cannot read {}", argv[1]);
+            return 1;
+        }
+        script.assign(std::istreambuf_iterator<char>(in), {});
+    }
+    JSRuntime* rt = JS_NewRuntime();
+    JSContext* ctx = JS_NewContext(rt);
+    JSValue global = JS_GetGlobalObject(ctx);
+    JS_SetPropertyStr(ctx, global, "shout", JS_NewCFunction(ctx, shout, "shout", 1));
+    JS_FreeValue(ctx, global);
+
+    JSValue result = JS_Eval(ctx, script.c_str(), script.size(), "<script>", JS_EVAL_TYPE_GLOBAL);
+    const bool failed = JS_IsException(result);
+    if (failed) result = JS_GetException(ctx);
+    const char* text = JS_ToCString(ctx, result);
+    std::println(failed ? std::cerr : std::cout, "{}", text ? text : "?");
+    JS_FreeCString(ctx, text);
+    JS_FreeValue(ctx, result);
+    std::println("(QuickJS-ng {})", JS_GetVersion());
+    JS_FreeContext(ctx);
+    JS_FreeRuntime(rt);
+    return failed ? 1 : 0;
+}

@@ -1,0 +1,43 @@
+# Module wrapper; upstream API preserved. Policy: mcpp-index/docs/mwrap.md.
+[package]
+namespace   = "mcpplibs.mwrap"
+name        = "quickjs_ng"
+version     = "0.17.0"
+description = "QuickJS-ng 0.17.0 C++ modules for mcpp (import mcpplibs.mwrap.quickjs_ng;): the embedding API of quickjs.h over compat.quickjs-ng, its static inline API adapted, its macros as constants and constexpr functions"
+license     = "Apache-2.0"
+authors     = ["mcpp-community"]
+repo        = "https://github.com/mcpplibs/quickjs-ng-m"
+platforms   = ["linux", "macos", "windows"]
+
+[targets.quickjs_ng]
+kind = "lib"
+
+[build]
+sources      = ["src/*.cppm", "src/*.cpp"]
+# <mwrap/quickjs_ng/macros.hpp>: the macros a function cannot be.
+include_dirs = ["include"]
+
+[dependencies]
+compat.quickjs-ng = "0.17.0"
+
+[dev-dependencies]
+compat.gtest = "1.15.2"
+
+[package.metadata.mwrap]
+upstream-version = "0.17.0"
+
+[[runtime.deploy]]
+from = "LICENSE"
+to   = "licenses/quickjs_ng"
+
+[[runtime.deploy]]
+from = "NOTICE"
+to   = "licenses/quickjs_ng"
+
+[[runtime.deploy]]
+from = "upstream/quickjs-ng/README.md"
+to   = "licenses/quickjs_ng/upstream/quickjs-ng"
+
+[[runtime.deploy]]
+from = "upstream/quickjs-ng/LICENSE"
+to   = "licenses/quickjs_ng/upstream/quickjs-ng"

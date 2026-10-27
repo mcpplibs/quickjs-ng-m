@@ -1,0 +1,17 @@
+{
+  "upstream": "https://github.com/quickjs-ng/quickjs/archive/refs/tags/v0.17.0.tar.gz",
+  "upstream_sha256": "559bc4c420475e55c7ab4510adbc562f55d7524d75e8e89d79ce4bb02f5687d9",
+  "pruning": "Nothing of QuickJS-ng is vendored: the engine is compat.quickjs-ng 0.17.0, built from the same tarball (without quickjs-libc). Its README and license are retained here.",
+  "documents": [
+    {
+      "path": "upstream/quickjs-ng/README.md",
+      "source": "https://github.com/quickjs-ng/quickjs/blob/v0.17.0/README.md",
+      "sha256": "fe2760de5a67464245431d4916c9ad190a29ecc041e0f6c28bcce5d0d6fbfc3b"
+    },
+    {
+      "path": "upstream/quickjs-ng/LICENSE",
+      "source": "https://github.com/quickjs-ng/quickjs/blob/v0.17.0/LICENSE",
+      "sha256": "96f73f9d2a16c21a36b418f06073be26e7d6d5e7c1bc99756b21a4f2c74ef171"
+    }
+  ]
+}
