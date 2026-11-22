@@ -9,7 +9,7 @@ kind = "bin"
 main = "src/main.cpp"
 
 [dependencies]
-"mcpplibs.mwrap.quickjs_ng" = { path = "../.." }
+mcpplibs.mwrap.quickjs_ng = { path = "../.." }
 
 # An 8 MB stack on Windows, as upstream links its programs: the default 1 MB
 # is QuickJS's own JS stack limit, so deep recursion would overflow the C
