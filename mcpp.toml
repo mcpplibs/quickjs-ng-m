@@ -2,7 +2,7 @@
 [package]
 namespace   = "mcpplibs.mwrap"
 name        = "quickjs_ng"
-version     = "0.17.0"
+version     = "0.17.0.1"
 description = "QuickJS-ng 0.17.0 C++ modules for mcpp (import mcpplibs.mwrap.quickjs_ng;): the embedding API of quickjs.h over compat.quickjs-ng, its static inline API adapted, its macros as constants and constexpr functions"
 license     = "Apache-2.0"
 authors     = ["mcpp-community"]
