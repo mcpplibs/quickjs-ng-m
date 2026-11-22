@@ -26,7 +26,7 @@ run, on a host written against the module.
 ## Getting started
 
 ```sh
-mcpp new scripted --template mcpplibs.mwrap.quickjs_ng@0.17.0
+mcpp new scripted --template mcpplibs.mwrap.quickjs_ng@0.17.0.1
 cd scripted
 mcpp run
 ```
@@ -36,7 +36,7 @@ it, and prints the result.
 
 ```toml
 [dependencies]
-"mcpplibs.mwrap.quickjs_ng" = "0.17.0"
+mcpplibs.mwrap.quickjs_ng = "0.17.0.1"
 ```
 
 ```cpp

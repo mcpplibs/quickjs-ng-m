@@ -25,7 +25,7 @@
 ## 快速开始
 
 ```sh
-mcpp new scripted --template mcpplibs.mwrap.quickjs_ng@0.17.0
+mcpp new scripted --template mcpplibs.mwrap.quickjs_ng@0.17.0.1
 cd scripted
 mcpp run
 ```
@@ -34,7 +34,7 @@ mcpp run
 
 ```toml
 [dependencies]
-"mcpplibs.mwrap.quickjs_ng" = "0.17.0"
+mcpplibs.mwrap.quickjs_ng = "0.17.0.1"
 ```
 
 ```cpp
